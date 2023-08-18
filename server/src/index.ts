@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import { ServerSocket } from './socket';
+import cors from 'cors';
 
 const app = express();
 
@@ -11,6 +12,9 @@ const httpServer = http.createServer(app);
 
 /** Start the socket*/
 new ServerSocket(httpServer);
+
+/** CORS */
+app.use(cors());
 
 /** Log the request */
 app.use((req, res, next) => {
